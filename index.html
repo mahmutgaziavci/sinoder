@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b11">
+  <meta name="description" content="SİNODER - Bursa Sinema Dizi Oyuncuları Derneği. Sinema, dizi, oyunculuk, eğitim ve sektörel dayanışma.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SİNODER">
+  <meta property="og:title" content="SİNODER | Bursa Sinema Dizi Oyuncuları Derneği">
+  <meta property="og:description" content="Sanatın gücü, birlikte daha güçlü.">
+  <meta property="og:image" content="assets/sinoder-logo.jpeg">
+  <title>SİNODER | Bursa Sinema Dizi Oyuncuları Derneği</title>
+
+  <link rel="icon" href="assets/sinoder-logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080b11;
+      --bg-soft: #0c121b;
+      --surface: #111a26;
+      --surface-2: #172231;
+      --gold: #d6b36a;
+      --gold-light: #f2dfb5;
+      --text: #f5f2eb;
+      --muted: #a5adba;
+      --line: rgba(214,179,106,.22);
+      --radius: 20px;
+      --container: 1180px;
+      --header-height: 86px;
+      --shadow: 0 22px 65px rgba(0,0,0,.28);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 105px; }
+    body {
+      min-width: 320px;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse at 50% -15%, rgba(48,61,78,.32), transparent 48%),
+        var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.7;
+    }
+    body, button, input, textarea { font-family: "DM Sans", sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { color: inherit; }
+    ::selection { color: #090b10; background: var(--gold-light); }
+    .container { width: min(var(--container), 91%); margin-inline: auto; }
+    .section { padding: 104px 0; position: relative; }
+    .section-dark {
+      background: linear-gradient(145deg, rgba(18,27,39,.82), rgba(9,14,21,.96));
+      border-block: 1px solid rgba(255,255,255,.045);
+    }
+    .section-heading { margin-bottom: 38px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      color: var(--gold-light);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .eyebrow::after {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .section-title {
+      position: relative;
+      display: table;
+      max-width: 100%;
+      padding-bottom: 21px;
+      margin-bottom: 22px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(34px, 5vw, 49px);
+      font-weight: 700;
+      line-height: 1.18;
+      letter-spacing: -.6px;
+    }
+    .section-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 104px;
+      height: 3px;
+      border-radius: 9px;
+      background: linear-gradient(90deg, var(--gold-light), var(--gold), transparent);
+    }
+    .section-desc { max-width: 720px; color: var(--muted); font-size: 15px; }
+    .gold { color: var(--gold-light); }
+
+    /* Header and navigation */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(7,10,15,.91);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .nav-wrap {
+      min-height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .brand-mark {
+      position: relative;
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 14px;
+      background: linear-gradient(135deg, #f3dfb2, #a77b35);
+      color: #101010;
+      font-family: "Playfair Display", serif;
+      font-size: 25px;
+      font-weight: 800;
+      box-shadow: 0 8px 25px rgba(214,179,106,.13);
+    }
+    .brand-mark img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .brand-copy { display: block; }
+    .brand-name {
+      color: var(--gold-light);
+      font-family: "Playfair Display", serif;
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      line-height: 1.2;
+    }
+    .brand-sub { color: #aab1bc; font-size: 9px; letter-spacing: 1.15px; }
+    .nav-links { display: flex; align-items: center; gap: clamp(10px, 1.5vw, 21px); }
+    .nav-links a {
+      position: relative;
+      padding: 12px 0;
+      color: #d3d7df;
+      font-size: 12px;
+      font-weight: 700;
+      transition: color .25s ease;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 5px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold-light), var(--gold));
+      transition: width .25s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--gold-light); }
+    .nav-links a:hover::after, .nav-links a:focus-visible::after { width: 100%; }
+    .button {
+      display: inline-flex;
+      min-height: 47px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 23px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f3dfb2, #c49a50);
+      color: #101114;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+    }
+    .button:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(214,179,106,.2); filter: brightness(1.04); }
+    .button-outline { border-color: rgba(214,179,106,.48); background: rgba(255,255,255,.025); color: var(--gold-light); }
+    .button-outline:hover { background: rgba(214,179,106,.1); }
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--gold-light);
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 730px;
+      display: flex;
+      align-items: center;
+      isolation: isolate;
+      background:
+        linear-gradient(90deg, rgba(5,8,13,.98) 0%, rgba(5,8,13,.86) 48%, rgba(5,8,13,.36) 100%),
+        linear-gradient(0deg, var(--bg), transparent 38%),
+        url("assets/sinoder-konsept.jpeg") center/cover no-repeat;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: radial-gradient(circle at 78% 48%, rgba(214,179,106,.10), transparent 32%);
+      pointer-events: none;
+    }
+    .hero-content { max-width: 790px; padding: 100px 0 88px; }
+    .hero .eyebrow { margin-bottom: 25px; }
+    .hero h1 {
+      position: relative;
+      padding-bottom: 26px;
+      margin-bottom: 25px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(45px, 7vw, 78px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      text-shadow: 0 8px 35px rgba(0,0,0,.42);
+    }
+    .hero h1::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 128px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-light), var(--gold), transparent);
+    }
+    .hero p { max-width: 620px; margin-bottom: 31px; color: #c2c8d1; font-size: 17px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; max-width: 650px; margin-top: 52px; }
+    .stat {
+      padding: 17px 19px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(15,22,32,.72);
+      backdrop-filter: blur(12px);
+      transition: transform .25s ease, border-color .25s ease;
+    }
+    .stat:hover { transform: translateY(-4px); border-color: rgba(214,179,106,.65); }
+    .stat strong { display: block; color: var(--gold-light); font-size: 23px; }
+    .stat span { color: var(--muted); font-size: 11px; }
+
+    /* About */
+    .about-grid, .contact-grid, .donation-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; }
+    .about-copy .section-desc + .section-desc { margin-top: 16px; }
+    .about-copy .button { margin-top: 27px; }
+    .about-panel {
+      position: relative;
+      min-height: 405px;
+      display: flex;
+      align-items: flex-end;
+      padding: 34px;
+      overflow: hidden;
+      border: 1px solid rgba(214,179,106,.35);
+      border-radius: 24px;
+      background:
+        linear-gradient(0deg, rgba(5,8,13,.97), rgba(5,8,13,.08)),
+        url("assets/sinoder-konsept.jpeg") center/cover no-repeat;
+      box-shadow: var(--shadow);
+    }
+    .about-panel::before { content: ""; position: absolute; inset: 13px; border: 1px solid rgba(214,179,106,.35); border-radius: 16px; pointer-events: none; }
+    .about-panel-copy { position: relative; border-left: 3px solid var(--gold); padding-left: 18px; }
+    .about-panel strong { display: block; margin-bottom: 9px; font-family: "Playfair Display", serif; font-size: 28px; line-height: 1.35; }
+
+    /* Feature cards */
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 39px; }
+    .feature-card, .announcement-card, .member-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, #192330, #0e141d);
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+    .feature-card { padding: 27px; }
+    .feature-card:hover, .announcement-card:hover, .member-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(214,179,106,.62);
+      box-shadow: 0 18px 42px rgba(0,0,0,.28);
+    }
+    .feature-icon {
+      display: grid;
+      width: 51px;
+      height: 51px;
+      place-items: center;
+      margin-bottom: 19px;
+      border: 1px solid rgba(214,179,106,.2);
+      border-radius: 15px;
+      background: rgba(214,179,106,.10);
+      color: var(--gold-light);
+      font-size: 23px;
+    }
+    .feature-card h3 { margin-bottom: 9px; font-size: 17px; }
+    .feature-card p { color: var(--muted); font-size: 13px; }
+
+    /* Board */
+    .board-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 39px; }
+    .member-card { padding: 12px; overflow: hidden; text-align: center; }
+    .member-photo {
+      position: relative;
+      display: grid;
+      height: 205px;
+      place-items: center;
+      margin-bottom: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(214,179,106,.2);
+      border-radius: 13px;
+      background: linear-gradient(145deg, #263344, #111822);
+    }
+    .photo-placeholder { color: var(--gold); font-family: "Playfair Display", serif; font-size: 43px; }
+    .member-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+    .member-card:hover .member-photo img { transform: scale(1.06); }
+    .member-card h3 { margin-bottom: 4px; font-size: 13px; }
+    .member-card p { color: var(--gold-light); font-size: 11px; }
+
+    /* Announcements */
+    .announcement-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 39px; }
+    .announcement-card { position: relative; padding: 27px; overflow: hidden; }
+    .announcement-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .announcement-card small { color: var(--gold); font-size: 10px; font-weight: 800; letter-spacing: 2px; }
+    .announcement-card h3 { margin: 12px 0 9px; font-size: 18px; }
+    .announcement-card p { color: var(--muted); font-size: 13px; }
+
+    /* Donation */
+    .donation-panel {
+      padding: 32px;
+      border: 1px solid rgba(214,179,106,.3);
+      border-radius: 22px;
+      background: linear-gradient(145deg, #1b2837, #0f151e);
+      box-shadow: var(--shadow);
+    }
+    .donation-panel h3 { margin-bottom: 8px; font-size: 21px; }
+    .bank-box { margin-top: 21px; padding: 21px; border: 1px solid var(--line); border-radius: 15px; background: rgba(0,0,0,.22); }
+    .bank-box small { display: block; margin-bottom: 5px; color: var(--muted); }
+    .iban { color: var(--gold-light); font-weight: 800; overflow-wrap: anywhere; }
+    .notice { margin-top: 12px; color: var(--muted); font-size: 11px; }
+
+    /* Contact */
+    .contact-list { display: grid; gap: 14px; }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: linear-gradient(120deg, #17212d, #0e141c);
+      transition: transform .25s ease, border-color .25s ease;
+    }
+    .contact-item:hover { transform: translateX(4px); border-color: rgba(214,179,106,.65); }
+    .contact-item .feature-icon { flex: 0 0 49px; margin: 0; }
+    .contact-item small { display: block; color: var(--muted); font-size: 10px; letter-spacing: 1px; }
+    .contact-item strong { font-size: 14px; overflow-wrap: anywhere; }
+    .contact-form { padding: 29px; border: 1px solid var(--line); border-radius: 21px; background: linear-gradient(145deg, #192331, #0d131c); }
+    .contact-form h3 { margin-bottom: 18px; font-size: 20px; }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      margin-bottom: 13px;
+      padding: 14px 15px;
+      border: 1px solid rgba(214,179,106,.2);
+      border-radius: 10px;
+      outline: none;
+      background: #080d13;
+      color: #fff;
+      font-size: 14px;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .contact-form input:focus, .contact-form textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(214,179,106,.08); }
+    .contact-form textarea { min-height: 125px; resize: vertical; }
+    .contact-form .button { width: 100%; }
+    .form-status { min-height: 18px; margin-top: 10px; color: var(--gold-light); font-size: 12px; }
+
+    /* Footer and mobile nav */
+    footer { padding: 46px 0 55px; border-top: 1px solid var(--line); background: #05070b; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+    .footer-inner p { color: var(--muted); font-size: 12px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 17px; }
+    .footer-links a { color: var(--muted); font-size: 12px; transition: color .2s ease; }
+    .footer-links a:hover { color: var(--gold-light); }
+    .mobile-bottom { display: none; }
+
+    :focus-visible { outline: 2px solid var(--gold-light); outline-offset: 4px; }
+    @media (max-width: 1080px) {
+      .nav-links { gap: 11px; }
+      .nav-links a { font-size: 11px; }
+      .board-grid { grid-template-columns: repeat(4, 1fr); }
+      .nav-cta { display: none; }
+    }
+    @media (max-width: 820px) {
+      .menu-toggle { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        padding: 13px 5% 19px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(8,11,17,.98);
+        backdrop-filter: blur(18px);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.05); font-size: 14px; }
+      .nav-links a::after { display: none; }
+      .hero { min-height: 680px; background-position: 60% center; }
+      .about-grid, .contact-grid, .donation-grid { grid-template-columns: 1fr; gap: 32px; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .announcement-grid { grid-template-columns: repeat(2, 1fr); }
+      .board-grid { grid-template-columns: repeat(3, 1fr); }
+      .mobile-bottom {
+        position: fixed;
+        z-index: 1001;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 9px 5px calc(9px + env(safe-area-inset-bottom));
+        border-top: 1px solid var(--line);
+        background: rgba(7,10,15,.97);
+        backdrop-filter: blur(18px);
+      }
+      .mobile-bottom a { color: var(--muted); text-align: center; font-size: 10px; }
+      .mobile-bottom span { display: block; color: var(--gold); font-size: 19px; line-height: 1.5; }
+      footer { padding-bottom: 110px; }
+    }
+    @media (max-width: 560px) {
+      .section { padding: 76px 0; }
+      .hero { min-height: 640px; }
+      .hero-content { padding: 72px 0; }
+      .hero h1 { font-size: 43px; }
+      .hero p { font-size: 14px; }
+      .section-title { font-size: 34px; }
+      .stats { gap: 7px; }
+      .stat { padding: 12px 8px; }
+      .stat strong { font-size: 17px; }
+      .stat span { font-size: 9px; }
+      .feature-grid, .announcement-grid { grid-template-columns: 1fr; }
+      .board-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .member-photo { height: 175px; }
+      .member-card { padding: 10px; }
+      .about-panel { min-height: 330px; padding: 25px; }
+      .about-panel strong { font-size: 24px; }
+      .donation-panel, .contact-form { padding: 22px; }
+      .brand-name { font-size: 22px; }
+      .brand-sub { font-size: 7px; letter-spacing: .8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav-wrap">
+      <a class="brand" href="#anasayfa" aria-label="SİNODER ana sayfa">
+        <div class="brand-mark">
+          <img src="assets/sinoder-logo.jpeg" alt="SİNODER logosu" onerror="this.remove()">
+          <span>S</span>
+        </div>
+        <span class="brand-copy">
+          <span class="brand-name">SİNODER</span>
+          <span class="brand-sub">BURSA SİNEMA DİZİ OYUNCULARI DERNEĞİ</span>
+        </span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks">☰</button>
+
+      <nav class="nav-links" id="navLinks" aria-label="Ana menü">
+        <a href="#anasayfa">Ana Sayfa</a>
+        <a href="#kurumsal">Hakkımızda</a>
+        <a href="#egitim">Eğitim</a>
+        <a href="#faaliyetler">Faaliyetler</a>
+        <a href="#yonetim">Yönetim</a>
+        <a href="#duyurular">Duyurular</a>
+        <a href="#bagis">Bağış</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+
+      <a class="button nav-cta" href="#iletisim">Bize Ulaşın <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="anasayfa">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">Sanat · Emek · Dayanışma</div>
+          <h1>Sanatın Gücü,<br><span class="gold">Birlikte Daha Güçlü.</span></h1>
+          <p>Bursa Sinema Dizi Oyuncuları Derneği olarak sinema ve televizyon sektöründe emeği, eğitimi, dayanışmayı ve sanatsal gelişimi destekliyoruz.</p>
+          <div class="hero-actions">
+            <a href="#kurumsal" class="button">Derneğimizi Tanıyın <span aria-hidden="true">↗</span></a>
+            <a href="#iletisim" class="button button-outline">İletişime Geçin</a>
+          </div>
+          <div class="stats" aria-label="Dernek değerleri">
+            <div class="stat"><strong>Sanat</strong><span>Sanatsal gelişim</span></div>
+            <div class="stat"><strong>Eğitim</strong><span>Mesleki gelişim</span></div>
+            <div class="stat"><strong>Birlik</strong><span>Sektörel dayanışma</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kurumsal">
+      <div class="container about-grid">
+        <div class="about-copy">
+          <div class="eyebrow">Biz Kimiz?</div>
+          <h2 class="section-title">Sanata Değer,<br><span class="gold">Sanatçıya Destek.</span></h2>
+          <p class="section-desc">SİNODER, sinema ve dizi sektöründe faaliyet gösteren oyuncuları, sanatçıları ve sektöre gönül veren kişileri ortak bir çatı altında buluşturmayı amaçlayan bir dayanışma platformudur.</p>
+          <p class="section-desc">Hedefimiz; oyunculuk sanatının gelişmesine katkı sağlamak, eğitim olanaklarını desteklemek, sektörel iletişimi güçlendirmek ve kültür-sanat çalışmalarına katkıda bulunmaktır.</p>
+          <a href="#iletisim" class="button">Bizimle İletişime Geçin <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="about-panel">
+          <div class="about-panel-copy">
+            <strong>Birlikte Üretiyor,<br>Birlikte Güçleniyoruz.</strong>
+            <p class="section-desc">Sinema ve oyunculuk sanatına ortak katkı.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="egitim">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Kendini Geliştir</div>
+          <h2 class="section-title">Eğitim ve <span class="gold">Atölyeler</span></h2>
+          <p class="section-desc">Oyunculuk alanında bilgi, beceri ve deneyimi geliştirmeye yönelik eğitim ve atölye çalışmalarını destekliyoruz.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card"><div class="feature-icon" aria-hidden="true">🎭</div><h3>Oyunculuk Eğitimi</h3><p>Sahne ve kamera önü oyunculuğuna yönelik gelişim çalışmaları.</p></article>
+          <article class="feature-card"><div class="feature-icon" aria-hidden="true">🎬</div><h3>Kamera Önü Atölyesi</h3><p>Kamera karşısında performans ve uygulama odaklı çalışmalar.</p></article>
+          <article class="feature-card"><div class="feature-icon" aria-hidden="true">🎤</div><h3>Ses ve Diksiyon</h3><p>Doğru konuşma, ses kullanımı ve etkili iletişim becerileri.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faaliyetler">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Neler Yapıyoruz?</div>
+          <h2 class="section-title">Faaliyet <span class="gold">Alanlarımız</span></h2>
+          <p class="section-desc">Sanatın farklı alanlarında gelişimi ve dayanışmayı destekleyen çalışmalar.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card"><div class="feature-icon" aria-hidden="true">🎥</div><h3>Sinema ve Dizi</h3><p>Sinema ve televizyon sektörüne yönelik sanatsal çalışmalar.</p></article>
+          <article class="feature-card"><div class="feature-icon" aria-hidden="true">🤝</div><h3>Sektörel Dayanışma</h3><p>Oyuncular ve sektör çalışanları arasında iletişim ve iş birliği.</p></article>
+          <article class="feature-card"><div class="feature-icon" aria-hidden="true">📚</div><h3>Eğitim Faaliyetleri</h3><p>Mesleki gelişim, eğitim programları ve atölyeler.</p></article>
+          <article class="feature-card"><div class="feature-icon" aria-hidden="true">🌟</div><h3>Genç Yetenekler</h3><p>Yeni yeteneklerin keşfedilmesine ve gelişmesine katkı.</p></article>
+          <article class="feature-card"><div class="feature-icon" aria-hidden="true">🎭</div><h3>Kültür ve Sanat</h3><p>Kültür-sanat etkinlikleri ve sanatsal projeler.</p></article>
+          <article class="feature-card"><div class="feature-icon" aria-hidden="true">📢</div><h3>Etkinlik ve Organizasyon</h3><p>Toplantılar, buluşmalar ve sektörel organizasyonlar.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="yonetim">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">SİNODER Kurumsal</div>
+          <h2 class="section-title">Yönetim <span class="gold">Kurulumuz</span></h2>
+          <p class="section-desc">Derneğimizin çalışmalarını yürüten yönetim kurulu üyelerimiz.</p>
+        </div>
+        <div class="board-grid">
+          <article class="member-card"><div class="member-photo"><span class="photo-placeholder">01</span><img src="assets/yonetim-01.jpg" alt="Yönetim kurulu başkanı" loading="lazy" onerror="this.remove()"></div><h3>Üye Adı Soyadı</h3><p>Yönetim Kurulu Başkanı</p></article>
+          <article class="member-card"><div class="member-photo"><span class="photo-placeholder">02</span><img src="assets/yonetim-02.jpg" alt="Başkan yardımcısı" loading="lazy" onerror="this.remove()"></div><h3>Üye Adı Soyadı</h3><p>Başkan Yardımcısı</p></article>
+          <article class="member-card"><div class="member-photo"><span class="photo-placeholder">03</span><img src="assets/yonetim-03.jpg" alt="Genel sekreter" loading="lazy" onerror="this.remove()"></div><h3>Üye Adı Soyadı</h3><p>Genel Sekreter</p></article>
+          <article class="member-card"><div class="member-photo"><span class="photo-placeholder">04</span><img src="assets/yonetim-04.jpg" alt="Sayman" loading="lazy" onerror="this.remove()"></div><h3>Üye Adı Soyadı</h3><p>Sayman</p></article>
+          <article class="member-card"><div class="member-photo"><span class="photo-placeholder">05</span><img src="assets/yonetim-05.jpg" alt="Yönetim kurulu üyesi" loading="lazy" onerror="this.remove()"></div><h3>Üye Adı Soyadı</h3><p>Yönetim Kurulu Üyesi</p></article>
+          <article class="member-card"><div class="member-photo"><span class="photo-placeholder">06</span><img src="assets/yonetim-06.jpg" alt="Yönetim kurulu üyesi" loading="lazy" onerror="this.remove()"></div><h3>Üye Adı Soyadı</h3><p>Yönetim Kurulu Üyesi</p></article>
+          <article class="member-card"><div class="member-photo"><span class="photo-placeholder">07</span><img src="assets/yonetim-07.jpg" alt="Yönetim kurulu üyesi" loading="lazy" onerror="this.remove()"></div><h3>Üye Adı Soyadı</h3><p>Yönetim Kurulu Üyesi</p></article>
+          <article class="member-card"><div class="member-photo"><span class="photo-placeholder">08</span><img src="assets/yonetim-08.jpg" alt="Yönetim kurulu üyesi" loading="lazy" onerror="this.remove()"></div><h3>Üye Adı Soyadı</h3><p>Yönetim Kurulu Üyesi</p></article>
+          <article class="member-card"><div class="member-photo"><span class="photo-placeholder">09</span><img src="assets/yonetim-09.jpg" alt="Yönetim kurulu üyesi" loading="lazy" onerror="this.remove()"></div><h3>Üye Adı Soyadı</h3><p>Yönetim Kurulu Üyesi</p></article>
+          <article class="member-card"><div class="member-photo"><span class="photo-placeholder">10</span><img src="assets/yonetim-10.jpg" alt="Yönetim kurulu üyesi" loading="lazy" onerror="this.remove()"></div><h3>Üye Adı Soyadı</h3><p>Yönetim Kurulu Üyesi</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="duyurular">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Güncel</div>
+          <h2 class="section-title">Duyurular ve <span class="gold">Etkinlikler</span></h2>
+          <p class="section-desc">Derneğimizin duyuru ve etkinliklerini bu alanda paylaşabilirsiniz.</p>
+        </div>
+        <div class="announcement-grid">
+          <article class="announcement-card"><small>DUYURU</small><h3>Dernek Çalışmaları</h3><p>Dernek faaliyetleri ve güncel çalışmalarla ilgili duyurular burada yayımlanacaktır.</p></article>
+          <article class="announcement-card"><small>EĞİTİM</small><h3>Eğitim Programları</h3><p>Oyunculuk eğitimleri ve atölye programlarıyla ilgili gelişmeleri takip edebilirsiniz.</p></article>
+          <article class="announcement-card"><small>ETKİNLİK</small><h3>Sanat Buluşmaları</h3><p>Kültür ve sanat etkinlikleri hakkındaki bilgilendirmeler bu bölümde yer alacaktır.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="bagis">
+      <div class="container donation-grid">
+        <div>
+          <div class="eyebrow">Dayanışmaya Katılın</div>
+          <h2 class="section-title">Sanata <span class="gold">Destek Olun.</span></h2>
+          <p class="section-desc">Derneğimizin eğitim, kültür ve sanat faaliyetlerine katkıda bulunmak isteyen destekçilerimiz için bağış bilgileri bu bölümde paylaşılacaktır.</p>
+        </div>
+        <div class="donation-panel">
+          <h3>Bağış Bilgileri</h3>
+          <p class="section-desc">Banka ve hesap bilgileri yönetim tarafından doğrulandıktan sonra eklenecektir.</p>
+          <div class="bank-box">
+            <small>Banka</small>
+            <strong>Doğrulanmış banka bilgisi eklenecek</strong>
+            <br><br>
+            <small>IBAN</small>
+            <div class="iban" id="ibanText">Yönetim tarafından doğrulanmış IBAN bilgisi eklenecek</div>
+            <br>
+            <button class="button" type="button" id="copyIbanButton">IBAN'ı Kopyala</button>
+            <p class="notice" id="copyNotice" role="status">Resmî IBAN bilgisi eklendiğinde kopyalama özelliği aktif olacaktır.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="iletisim">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Bize Ulaşın</div>
+          <h2 class="section-title">İletişime <span class="gold">Geçin</span></h2>
+          <p class="section-desc">Sorularınız, önerileriniz ve iş birliği talepleriniz için bizimle iletişime geçebilirsiniz.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-list">
+            <div class="contact-item"><div class="feature-icon" aria-hidden="true">☎</div><a href="tel:+905447105502"><small>TELEFON - 1</small><strong>+90 544 710 55 02</strong></a></div>
+            <div class="contact-item"><div class="feature-icon" aria-hidden="true">☎</div><a href="tel:+905417747159"><small>TELEFON - 2</small><strong>+90 541 774 71 59</strong></a></div>
+            <div class="contact-item"><div class="feature-icon" aria-hidden="true">◉</div><a href="https://wa.me/905447105502" target="_blank" rel="noopener noreferrer"><small>WHATSAPP</small><strong>WhatsApp üzerinden yazın</strong></a></div>
+            <div class="contact-item"><div class="feature-icon" aria-hidden="true">◎</div><a href="https://www.instagram.com/sinoder.resmi/" target="_blank" rel="noopener noreferrer"><small>INSTAGRAM</small><strong>@sinoder.resmi</strong></a></div>
+          </div>
+
+          <div class="contact-form">
+            <h3>WhatsApp İletişim Formu</h3>
+            <form id="contactForm">
+              <label for="contactName" class="sr-only">Adınız Soyadınız</label>
+              <input type="text" id="contactName" name="name" placeholder="Adınız Soyadınız" autocomplete="name" required>
+              <label for="contactPhone" class="sr-only">Telefon Numaranız</label>
+              <input type="tel" id="contactPhone" name="phone" placeholder="Telefon Numaranız" autocomplete="tel">
+              <label for="contactMessage" class="sr-only">Mesajınız</label>
+              <textarea id="contactMessage" name="message" placeholder="Mesajınızı yazın..." required></textarea>
+              <button class="button" type="submit">WhatsApp ile Gönder <span aria-hidden="true">↗</span></button>
+              <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+            </form>
+            <p class="notice">Mesajınız WhatsApp üzerinden hazırlanır. Göndermek için WhatsApp uygulamasında onay vermeniz gerekir.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <div class="brand-name">SİNODER</div>
+        <p>Bursa Sinema Dizi Oyuncuları Derneği</p>
+        <p>© <span id="year"></span> SİNODER. Tüm hakları saklıdır.</p>
+      </div>
+      <nav class="footer-links" aria-label="Alt menü">
+        <a href="#kurumsal">Hakkımızda</a>
+        <a href="#faaliyetler">Faaliyetler</a>
+        <a href="#yonetim">Yönetim</a>
+        <a href="#iletisim">İletişim</a>
+        <a href="https://www.instagram.com/sinoder.resmi/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </nav>
+    </div>
+  </footer>
+
+  <nav class="mobile-bottom" aria-label="Mobil alt menü">
+    <a href="#anasayfa"><span aria-hidden="true">⌂</span>Ana Sayfa</a>
+    <a href="#kurumsal"><span aria-hidden="true">✦</span>Hakkımızda</a>
+    <a href="#yonetim"><span aria-hidden="true">♙</span>Yönetim</a>
+    <a href="#iletisim"><span aria-hidden="true">☎</span>İletişim</a>
+  </nav>
+
+  <script>
+    "use strict";
+
+    // Mobil menü
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    function closeMenu() {
+      navLinks.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Menüyü aç");
+      menuToggle.textContent = "☰";
+    }
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Menüyü kapat" : "Menüyü aç");
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeMenu();
+    });
+
+    // Otomatik yıl
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Resmî IBAN doğrulandıktan sonra aşağıdaki boş değere ekleyin.
+    const IBAN = "";
+
+    document.getElementById("copyIbanButton").addEventListener("click", async () => {
+      const notice = document.getElementById("copyNotice");
+
+      if (!IBAN.trim()) {
+        notice.textContent = "Henüz doğrulanmış IBAN bilgisi eklenmedi.";
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(IBAN.replace(/\s+/g, ""));
+        notice.textContent = "IBAN başarıyla kopyalandı.";
+      } catch (error) {
+        notice.textContent = "Kopyalama desteklenmedi. Lütfen IBAN'ı manuel kopyalayın.";
+      }
+    });
+
+    // WhatsApp iletişim formu
+    document.getElementById("contactForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const name = document.getElementById("contactName").value.trim();
+      const phone = document.getElementById("contactPhone").value.trim();
+      const message = document.getElementById("contactMessage").value.trim();
+      const status = document.getElementById("formStatus");
+
+      if (!name || !message) {
+        status.textContent = "Lütfen adınızı ve mesajınızı yazın.";
+        return;
+      }
+
+      const whatsappMessage = [
+        "Merhaba SİNODER,",
+        "",
+        "Ad Soyad: " + name,
+        "Telefon: " + (phone || "Belirtilmedi"),
+        "Mesaj: " + message
+      ].join("\n");
+
+      const whatsappUrl = "https://wa.me/905447105502?text=" + encodeURIComponent(whatsappMessage);
+      const newWindow = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+      if (!newWindow) {
+        status.textContent = "Tarayıcı yeni pencereyi engelledi. Lütfen açılır pencere izni verin.";
+      } else {
+        status.textContent = "WhatsApp mesajınız hazırlandı. Göndermek için WhatsApp'ta onaylayın.";
+      }
+    });
+  </script>
+</body>
+</html>
